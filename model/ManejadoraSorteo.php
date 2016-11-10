@@ -3,7 +3,7 @@
 require_once "ConsSorteos.php";
 
 
-class LibroHandlerModel
+class ManejadoraSorteo
 {
 
     public static function getSorteo($id)
@@ -77,7 +77,7 @@ class LibroHandlerModel
         }
         $db_connection->close();
 
-        return $listaLibros;
+        return $listaSorteo;
     }
 
     //returns true if $id is a valid id for a book

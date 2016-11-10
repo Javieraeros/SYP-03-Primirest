@@ -1,7 +1,7 @@
 <?php
 
 
-class Sorteo implements JsonSerializable
+class Boleto implements JsonSerializable
 {
     private $idBoleto;
     private $idSorteo;
@@ -107,15 +107,30 @@ class Sorteo implements JsonSerializable
         $this->premio = $premio;
     }
 
-    function __sleep()
-    {
-        // TODO: Implement __sleep() method.
-    }
 
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+
+    //Needed if the properties of the class are private.
+    //Otherwise json_encode will encode blank objects
     function jsonSerialize()
     {
-        // TODO: Implement jsonSerialize() method.
+        return array(
+            'idSorteo' => $this->idSorteo,
+            'idBoleto' => $this->idBoleto,
+            'reintegro' => $this->reintegro,
+            'tipoApuesta' => $this->tipoApuesta,
+            'premio' => $this->premio
+        );
     }
 
+    public function __sleep(){
+        return array('idSorteo','idBoleto','reintegro','tipoApuesta','premio' );
+    }
 
 }
