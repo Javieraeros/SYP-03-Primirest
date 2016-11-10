@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="localhost" id="64a21213-2a60-459f-bee1-79a282843055" name="local" use_path_mappings="true" />
+    </servers>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
 </project>

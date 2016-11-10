@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Local" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="Local">
+  <configuration default="false" name="Local" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="b1b2ec2c-20bd-4ee2-89c4-616db004bcd4" server_name="local" start_url="/primirest/">
     <method />
   </configuration>
 </component>
