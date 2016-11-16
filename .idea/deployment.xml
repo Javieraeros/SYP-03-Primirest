@@ -2,17 +2,17 @@
 <project version="4">
   <component name="PublishConfigData">
     <serverData>
+      <paths name="Local">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Primirest" local="$PROJECT_DIR$" web="/Primirest" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="fjruiz.ciclo.iesnervion.es">
         <serverdata>
           <mappings>
             <mapping deploy="/primirest" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="xampp-primirest">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

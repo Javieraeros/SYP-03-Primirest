@@ -1,5 +1,4 @@
 <?php
-
 require_once "Request.php";
 require_once "Response.php";
 
@@ -11,15 +10,15 @@ function apiAutoload($classname)
 
     //If the class name ends in "Controller", then try to locate the class in the controller directory to include it (require_once)
     if (preg_match('/[a-zA-Z]+Controller$/', $classname)) {
-        if (file_exists(__DIR__ . '/controller/' . $classname . '.php')) {
+        if (file_exists(__DIR__ . '/Controller/' . $classname . '.php')) {
 //            echo "cargamos clase: " . __DIR__ . '/controller/' . $classname . '.php';
-            require_once __DIR__ . '/controller/' . $classname . '.php';
+            require_once __DIR__ . '/Controller/' . $classname . '.php';
             $res = true;
         }
     } elseif (preg_match('/[a-zA-Z]+Model$/', $classname)) {
-        if (file_exists(__DIR__ . '/model/' . $classname . '.php')) {
-//            echo "<br/>cargamos clase: " . __DIR__ . '/model/' . $classname . '.php';
-            require_once __DIR__ . '/model/' . $classname . '.php';
+        if (file_exists(__DIR__ . '/Model/' . $classname . '.php')) {
+//            echo "<br/>cargamos clase: " . __DIR__ . '/Model/' . $classname . '.php';
+            require_once __DIR__ . '/Model/' . $classname . '.php';
 //            echo "clase cargada.......................";
             $res = true;
         }
@@ -35,7 +34,6 @@ function apiAutoload($classname)
     //}
     return $res;
 }
-
 
 //Let's retrieve all the information from the request
 $verb = $_SERVER['REQUEST_METHOD'];
@@ -66,7 +64,10 @@ $req = new Request($verb, $url_elements, $query_string, $body, $content_type, $a
 
 
 // route the request to the right place
+// I put the second place because the first one is taken by Primirest
 $controller_name = ucfirst($url_elements[1]) . 'Controller';
+
+echo $controller_name;
 if (class_exists($controller_name)) {
     $controller = new $controller_name();
     $action_name = 'manage' . ucfirst(strtolower($verb)) . 'Verb';
@@ -78,3 +79,5 @@ else {
     $controller = new NotFoundController();
     $controller->manage($req); //We don't care about the HTTP verb
 }
+
+

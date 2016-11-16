@@ -1,9 +1,9 @@
 <?php
 
-require_once "ConsSorteos.php";
+require_once "DbNames.php";
 
 
-class ManejadoraSorteo
+class ManejadoraSorteoModel
 {
 
     public static function getSorteo($id)

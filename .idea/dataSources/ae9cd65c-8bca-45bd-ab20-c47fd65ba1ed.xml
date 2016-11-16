@@ -11,7 +11,7 @@
     <schema id="3" parent="1" name="dbo">
       <object-id>1</object-id>
       <visible>1</visible>
-      <introspection-timestamp>2016-11-10.09:35:29.090</introspection-timestamp>
+      <introspection-timestamp>2016-11-16.17:05:36.197</introspection-timestamp>
     </schema>
     <schema id="4" parent="1" name="guest">
       <object-id>2</object-id>

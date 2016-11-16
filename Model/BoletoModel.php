@@ -1,13 +1,14 @@
 <?php
 
 
-class Boleto implements JsonSerializable
+class BoletoModel implements JsonSerializable
 {
     private $idBoleto;
     private $idSorteo;
     private $reintegro;
     private $tipoApuesta;
     private $premio;
+    private $numeroAcertados;
 
     /**
      * Sorteo constructor.
@@ -17,13 +18,14 @@ class Boleto implements JsonSerializable
      * @param $tipoApuesta
      * @param $premio
      */
-    public function __construct($idBoleto, $idSorteo, $reintegro, $tipoApuesta, $premio)
+    public function __construct($idBoleto, $idSorteo, $reintegro, $tipoApuesta, $premio,$numeroAcertados)
     {
         $this->idBoleto = $idBoleto;
         $this->idSorteo = $idSorteo;
         $this->reintegro = $reintegro;
         $this->tipoApuesta = $tipoApuesta;
         $this->premio = $premio;
+        $this->numeroAcertados=$numeroAcertados;
     }
 
 

@@ -29,19 +29,9 @@ class DatabaseModel
 
 
     // Constructor
-    // We could improve it by passing the config file path as a parameter
     private function __construct()
     {
-
-
-        // Load configuration as an array. Use the actual location of your configuration file
-        // The configuration file should be like this:
-        //[database]
-        //host = localhost
-        //dbname = myBD
-        //username = myuser
-        //password = mypassword
-        $config = parse_ini_file('Config/config.ini');
+        /*$config = parse_ini_file('Config/config.ini');
 
         // Try and connect to the database
         $this->_connection = new mysqli($config['host'], $config['user'],
@@ -51,6 +41,17 @@ class DatabaseModel
         if ($this->_connection->connect_error) {
             trigger_error("Failed to connect to MySQL: " . $this->_connection->connect_error,
                 E_USER_ERROR);
+        }*/
+
+        $serverName = "primitiva.database.windows.net,1433";
+        $connectionInfo = array( "Database"=>"PrimitivaJavi", "UID"=>"prueba", "PWD"=>"pr23ueba234.");
+        $conn = sqlsrv_connect( $serverName, $connectionInfo);
+
+        if( $conn ) {
+            echo "Conexión establecida.<br />";
+        }else{
+            echo "Conexión no se pudo establecer.<br />";
+            die( print_r( sqlsrv_errors(), true));
         }
     }
 
