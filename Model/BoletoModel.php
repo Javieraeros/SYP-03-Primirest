@@ -127,7 +127,8 @@ class BoletoModel implements JsonSerializable
             'idBoleto' => $this->idBoleto,
             'reintegro' => $this->reintegro,
             'tipoApuesta' => $this->tipoApuesta,
-            'premio' => $this->premio
+            'premio' => $this->premio,
+            'numeroAcertados' => $this->numeroAcertados
         );
     }
 

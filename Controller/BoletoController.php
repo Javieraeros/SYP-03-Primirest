@@ -18,9 +18,9 @@ class BoletoController extends Controller
         }
 
 
-        $listaLibros = ManejadoraBoletoModel::getBoleto($id);
+        $listaBoletos = ManejadoraBoletoModel::getBoleto($id);
 
-        if ($listaLibros != null) {
+        if ($listaBoletos != null) {
             $code = '200';
 
         } else {

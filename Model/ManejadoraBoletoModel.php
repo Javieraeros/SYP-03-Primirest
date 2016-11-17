@@ -9,7 +9,7 @@ class ManejadoraBoletoModel
 
     public static function getBoleto($id)
     {
-        $listaBoleto = "yiii";
+        $listaBoleto =null;
 
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
@@ -26,7 +26,7 @@ class ManejadoraBoletoModel
         $valid = self::isValid($id);
 
         //If the $id is valid or the client asks for the collection ($id is null)
-        /*if ($valid === true || $id == null) {
+        if ($valid === true || $id == null) {
             $query = "SELECT " . \ConstantesDB\ConsBoletos::id_sorteo . ","
                 . \ConstantesDB\ConsBoletos::id_boleto . ","
                 . \ConstantesDB\ConsBoletos::reintegro . ","
@@ -72,8 +72,7 @@ class ManejadoraBoletoModel
 //                $listaLibros[$i] = $row;
 //            }
         }
-        $db_connection->close();*/
-
+        $db_connection->close();
 
 
         return $listaBoleto;
