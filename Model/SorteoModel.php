@@ -4,7 +4,7 @@
 class SorteoModel implements JsonSerializable
 {
     private $idSorteo;
-    private $FechaDorteo;
+    private $FechaSorteo;
     private $num1;
     private $num2;
     private $num3;
@@ -18,7 +18,7 @@ class SorteoModel implements JsonSerializable
     /**
      * Boleto constructor.
      * @param $idSorteo
-     * @param $FechaDorteo
+     * @param $FechaSorteo
      * @param $num1
      * @param $num2
      * @param $num3
@@ -28,10 +28,10 @@ class SorteoModel implements JsonSerializable
      * @param $rein
      * @param $comp
      */
-    public function __construct($idSorteo, $FechaDorteo, $num1, $num2, $num3, $num4, $num5, $num6, $rein, $comp)
+    public function __construct($idSorteo, $FechaSorteo, $num1, $num2, $num3, $num4, $num5, $num6, $rein, $comp)
     {
         $this->idSorteo = $idSorteo;
-        $this->FechaDorteo = $FechaDorteo;
+        $this->FechaSorteo = $FechaSorteo;
         $this->num1 = $num1;
         $this->num2 = $num2;
         $this->num3 = $num3;
@@ -61,17 +61,17 @@ class SorteoModel implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getFechaDorteo()
+    public function getFechaSorteo()
     {
-        return $this->FechaDorteo;
+        return $this->FechaSorteo;
     }
 
     /**
-     * @param mixed $FechaDorteo
+     * @param mixed $FechaSorteo
      */
-    public function setFechaDorteo($FechaDorteo)
+    public function setFechaSorteo($FechaSorteo)
     {
-        $this->FechaDorteo = $FechaDorteo;
+        $this->FechaSorteo = $FechaSorteo;
     }
 
     /**
@@ -218,7 +218,7 @@ class SorteoModel implements JsonSerializable
     {
         return array(
             'idSorteo' => $this->idSorteo,
-            'FechaSorteo'=>$this->FechaDorteo ,
+            'FechaSorteo'=>$this->FechaSorteo ,
             'num1'=>$this->num1 ,
             'num2'=>$this->num2 ,
             'num3'=>$this->num3 ,

@@ -1,7 +1,7 @@
 <?php
 
 require_once "DbNames.php";
-
+require_once "SorteoModel.php";
 
 class ManejadoraSorteoModel
 {
@@ -65,7 +65,7 @@ class ManejadoraSorteoModel
 
             $prep_query->bind_result($idSorteo,$fecha,$num1,$num2,$num3,$num4,$num5,$num6,$comp,$rein);
             while ($prep_query->fetch()) {
-                $sorteo = new Sorteo($idSorteo,$fecha,$num1,$num2,$num3,$num4,$num5,$num6,$comp,$rein);
+                $sorteo = new SorteoModel($idSorteo,$fecha,$num1,$num2,$num3,$num4,$num5,$num6,$comp,$rein);
                 $listaSorteo[] = $sorteo;
             }
 
@@ -94,4 +94,37 @@ class ManejadoraSorteoModel
         return $res;
     }
 
+    /**
+     * @param $sorteo: será una instacia de sorteomodel, el controller
+     * se encargará de la validación
+     */
+    public static function postSorteo(SorteoModel $sorteo){
+        $db=DatabaseModel::getInstance();
+        $connection=$db->getConnection();
+
+        $query="Insert into ". \ConstantesDB\ConsSorteos::TABLE_NAME.
+            " (".\ConstantesDB\ConsSorteos::id_sorteo.
+            ",".\ConstantesDB\ConsSorteos::num1.
+            ",".\ConstantesDB\ConsSorteos::num2.
+            ",".\ConstantesDB\ConsSorteos::num3.
+            ",".\ConstantesDB\ConsSorteos::num4.
+            ",".\ConstantesDB\ConsSorteos::num5.
+            ",".\ConstantesDB\ConsSorteos::num6.
+            ",".\ConstantesDB\ConsSorteos::complementario.
+            ",".\ConstantesDB\ConsSorteos::reintegro.
+            ") Values (".$sorteo->getIdSorteo().
+            ",".$sorteo->getNum1().
+            ",".$sorteo->getNum2().
+            ",".$sorteo->getNum3().
+            ",".$sorteo->getNum4().
+            ",".$sorteo->getNum5().
+            ",".$sorteo->getNum6().
+            ",".$sorteo->getComp().
+            ",".$sorteo->getRein().")";
+
+        $prep_query = $connection->prepare($query);
+        $resultado=$prep_query->execute();
+        return $resultado;
+
+    }
 }
