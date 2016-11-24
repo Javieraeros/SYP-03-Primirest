@@ -77,4 +77,17 @@ class DatabaseModel
         return $this->_connection;
     }
 
+
+    public function closeConnection()
+    {
+        $this->_connection->close();
+        self::$_instance=null;
+    }
+
+    public function reconnect(){
+        $this->_connection->close();
+        self::$_instance=null;
+        return self::getInstance()->getConnection();
+    }
+
 }

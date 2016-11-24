@@ -72,7 +72,7 @@ class ManejadoraBoletoModel
 //                $listaLibros[$i] = $row;
 //            }
         }
-        $db_connection->close();
+        $db->closeConnection();
 
 
         return $listaBoleto;

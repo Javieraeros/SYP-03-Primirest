@@ -102,6 +102,8 @@ class ManejadoraSorteoModel
         $db=DatabaseModel::getInstance();
         $connection=$db->getConnection();
 
+
+
         $query="Insert into ". \ConstantesDB\ConsSorteos::TABLE_NAME.
             " (".\ConstantesDB\ConsSorteos::id_sorteo.
             ",".\ConstantesDB\ConsSorteos::num1.
@@ -124,6 +126,8 @@ class ManejadoraSorteoModel
 
         $prep_query = $connection->prepare($query);
         $resultado=$prep_query->execute();
+
+        $db->closeConnection();
         return $resultado;
 
     }

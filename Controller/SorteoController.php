@@ -46,7 +46,7 @@ class SorteoController extends Controller
         $resultado=null;
         $sorteo=null;
 
-        $sorteo->decode($request->getBodyParameters());
+        $sorteo=json_encode($request->getBodyParameters());
 
 
         $resultado=ManejadoraSorteoModel::postSorteo($sorteo);
@@ -66,7 +66,7 @@ class SorteoController extends Controller
 
         }
 
-        $response = new Response($code, null, $listaSorteos, $request->getAccept());
+        $response = new Response($code, null, $resultado, $request->getAccept());
         $response->generate();
     }
 }

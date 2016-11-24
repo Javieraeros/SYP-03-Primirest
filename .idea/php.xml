@@ -2,8 +2,8 @@
 <project version="4">
   <component name="PhpProjectServersManager">
     <servers>
-      <server host="localhost" id="64a21213-2a60-459f-bee1-79a282843055" name="local" use_path_mappings="true" />
-      <server host="localhost" id="096d5ad7-70b9-4e4d-9d4b-ce92a5cfdcb0" name="local -ciclo" use_path_mappings="true" />
+      <server host="localhost" id="64a21213-2a60-459f-bee1-79a282843055" name="local" />
+      <server host="primirestlocal.es" id="096d5ad7-70b9-4e4d-9d4b-ce92a5cfdcb0" name="local -ciclo" />
     </servers>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
