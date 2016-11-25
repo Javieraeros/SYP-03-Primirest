@@ -44,6 +44,7 @@ class Request
 
         switch ($content_type) {
             case "application/json":
+            case "*/*":
                 $this->format = "json";
                 $parameters = json_decode($body);
                 /*$body_params = json_decode($body);

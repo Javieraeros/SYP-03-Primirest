@@ -64,6 +64,10 @@ class ManejadoraSorteoModel
             // http://stackoverflow.com/questions/10466530/mysqli-prepared-statement-unable-to-get-result
 
             $prep_query->bind_result($idSorteo,$fecha,$num1,$num2,$num3,$num4,$num5,$num6,$comp,$rein);
+
+            //Necesario para que no pete cuando hago varias consultas
+            $prep_query->store_result();
+
             while ($prep_query->fetch()) {
                 $sorteo = new SorteoModel($idSorteo,$fecha,$num1,$num2,$num3,$num4,$num5,$num6,$comp,$rein);
                 $listaSorteo[] = $sorteo;

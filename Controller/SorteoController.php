@@ -46,7 +46,17 @@ class SorteoController extends Controller
         $resultado=null;
         $sorteo=null;
 
-        $sorteo=json_encode($request->getBodyParameters());
+        $sorteo=new SorteoModel($request->getBodyParameters()->idSorteo
+                ,$request->getBodyParameters()->FechaSorteo
+                ,$request->getBodyParameters()->num1
+                ,$request->getBodyParameters()->num2
+                ,$request->getBodyParameters()->num3
+                ,$request->getBodyParameters()->num4
+                ,$request->getBodyParameters()->num5
+                ,$request->getBodyParameters()->num6
+                ,$request->getBodyParameters()->rein
+                ,$request->getBodyParameters()->comp
+                );
 
 
         $resultado=ManejadoraSorteoModel::postSorteo($sorteo);
@@ -55,15 +65,7 @@ class SorteoController extends Controller
             $code = '200';
 
         } else {
-
-            //We could send 404 in any case, but if we want more precission,
-            //we can send 400 if the syntax of the entity was incorrect...
-            if (ManejadoraSorteoModel::isValid($id)) {
-                $code = '404';
-            } else {
-                $code = '400';
-            }
-
+            $code = '400';
         }
 
         $response = new Response($code, null, $resultado, $request->getAccept());
