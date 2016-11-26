@@ -110,6 +110,7 @@ class ManejadoraSorteoModel
 
         $query="Insert into ". \ConstantesDB\ConsSorteos::TABLE_NAME.
             " (".\ConstantesDB\ConsSorteos::id_sorteo.
+            "," . \ConstantesDB\ConsSorteos::fecha.
             ",".\ConstantesDB\ConsSorteos::num1.
             ",".\ConstantesDB\ConsSorteos::num2.
             ",".\ConstantesDB\ConsSorteos::num3.
@@ -119,14 +120,17 @@ class ManejadoraSorteoModel
             ",".\ConstantesDB\ConsSorteos::complementario.
             ",".\ConstantesDB\ConsSorteos::reintegro.
             ") Values (".$sorteo->getIdSorteo().
-            ",".$sorteo->getNum1().
+            ",'".$sorteo->getFechaSorteo().
+            "',".$sorteo->getNum1().
             ",".$sorteo->getNum2().
             ",".$sorteo->getNum3().
             ",".$sorteo->getNum4().
             ",".$sorteo->getNum5().
             ",".$sorteo->getNum6().
             ",".$sorteo->getComp().
-            ",".$sorteo->getRein().")";
+            ",".$sorteo->getRein().");";
+
+
 
         $prep_query = $connection->prepare($query);
         $resultado=$prep_query->execute();

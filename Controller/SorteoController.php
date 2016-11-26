@@ -58,6 +58,25 @@ class SorteoController extends Controller
                 ,$request->getBodyParameters()->comp
                 );
 
+        /*Si el json viene con valores null, al decodificarlo mete "" en los valores del objeto sorteo
+         y al hacer el insert en la tabla me da error, puesto que no pone ningún valor, así que lo que hago
+        es poner los valores que son "" como "null" (cadenas null)*/
+        for($i=1;$i<7;$i++){
+            $cadenaGet="getNum".$i;
+            $cadenaSet="setNum".$i;
+            if($sorteo->$cadenaGet()==""){
+                $sorteo->$cadenaSet("null");
+            }
+        }
+
+        if($sorteo->getComp()==""){
+            $sorteo->setComp("null");
+        }
+
+
+        if($sorteo->getRein()==""){
+            $sorteo->setRein("null");
+        }
 
         $resultado=ManejadoraSorteoModel::postSorteo($sorteo);
 

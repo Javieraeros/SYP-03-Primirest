@@ -9,17 +9,17 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="fjruiz.ciclo.iesnervion.es">
+      <paths name="Primirest">
         <serverdata>
           <mappings>
             <mapping deploy="/primirest" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="primirest.ciclo.iesnervion.es">
+      <paths name="fjruiz.ciclo.iesnervion.es">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/primirest" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
