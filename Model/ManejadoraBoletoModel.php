@@ -78,6 +78,31 @@ class ManejadoraBoletoModel
         return $listaBoleto;
     }
 
+    public static function postBoleto(BoletoModel $boleto){
+        $db=DatabaseModel::getInstance();
+        $connection=$db->getConnection();
+
+
+
+        $query="Insert into ". \ConstantesDB\ConsBoletos::TABLE_NAME.
+            " (".\ConstantesDB\ConsBoletos::id_sorteo.
+            "," . \ConstantesDB\ConsBoletos::id_boleto.
+            ",".\ConstantesDB\ConsBoletos::reintegro.
+            ",".\ConstantesDB\ConsBoletos::tipoApuesta.
+            ") Values (".$boleto->getIdSorteo().
+            ",'".$boleto->getIdBoleto().
+            "',".$boleto->getReintegro().
+            ",".$boleto->getTipoApuesta().");";
+
+
+
+        $prep_query = $connection->prepare($query);
+        $resultado=$prep_query->execute();
+        $db->closeConnection();
+        return $resultado;
+
+    }
+
     //returns true if $id is a valid id for a book
     //In this case, it will be valid if it only contains
     //numeric characters, even if this $id does not exist in

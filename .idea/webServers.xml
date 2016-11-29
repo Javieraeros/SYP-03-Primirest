@@ -8,6 +8,14 @@
       <webServer id="84fc0b09-8773-4e01-bb55-57fabe925da3" name="xampp-primirest" url="http://localhost">
         <fileTransfer port="0" mountedRoot="/opt/lampp/htdocs/primirest" accessType="MOUNT" />
       </webServer>
+      <webServer id="1f1498b6-5b96-4d6e-906b-26ceb8b34cf6" name="primirest.ciclo.iesnervion.es" url="http://primirest.fjruiz.ciclo.iesnervion.es">
+        <fileTransfer host="primirest.fjruiz.ciclo.iesnervion.es" port="50050" rootFolder="/primirest" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="50050" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

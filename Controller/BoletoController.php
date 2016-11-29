@@ -40,4 +40,36 @@ class BoletoController extends Controller
 
     }
 
+    /**
+     * Método que
+     * @param Request $request
+     */
+    public function managePostVerb(Request $request)
+    {
+        $response=null;
+        $code=null;
+        $resultado=null;
+        $boleto=null;
+
+        $boleto=new BoletoModel($request->getBodyParameters()->idBoleto
+            ,$request->getBodyParameters()->idSorteo
+            ,$request->getBodyParameters()->reintegro
+            ,$request->getBodyParameters()->tipoApuesta
+            ,0
+            ,0);
+
+
+        $resultado=ManejadoraBoletoModel::postBoleto($boleto);
+
+        if ($request != null) {
+            $code = '200';
+
+        } else {
+            $code = '400';
+        }
+
+        $response = new Response($code, null, $resultado, $request->getAccept());
+        $response->generate();
+    }
+
 }
