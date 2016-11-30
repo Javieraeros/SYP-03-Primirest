@@ -51,12 +51,14 @@ class ManejadoraSorteoModel
             //http://php.net/manual/es/function.hash-hmac.php
             //In this example we expose primary keys considering pedagogical reasons
 
+            //Si solo pide un sorteo, devuelve un objeto, en caso contrario devuelve un array
             if ($id != null) {
                 $prep_query->bind_param('s', $id);
+            }else{
+                $listaSorteo = array();
             }
 
             $prep_query->execute();
-            $listaSorteo = array();
 
             //IMPORTANT: IN OUR SERVER, I COULD NOT USE EITHER GET_RESULT OR FETCH_OBJECT,
             // PHP VERSION WAS OK (5.4), AND MYSQLI INSTALLED.
@@ -70,7 +72,12 @@ class ManejadoraSorteoModel
 
             while ($prep_query->fetch()) {
                 $sorteo = new SorteoModel($idSorteo,$fecha,$num1,$num2,$num3,$num4,$num5,$num6,$comp,$rein);
-                $listaSorteo[] = $sorteo;
+                //Si solo pide un sorteo, devuelve un objeto, en caso contrario devuelve un array
+                if($id==null){
+                    $listaSorteo[] = $sorteo;
+                }else{
+                    $listaSorteo=$sorteo;
+                }
             }
 
 //            $result = $prep_query->get_result();
@@ -79,7 +86,7 @@ class ManejadoraSorteoModel
 //                $listaLibros[$i] = $row;
 //            }
         }
-        $db_connection->close();
+        $db->closeConnection();
 
         return $listaSorteo;
     }
@@ -114,7 +121,7 @@ class ManejadoraSorteoModel
 
 
 
-        $query="Insert into ". \ConstantesDB\ConsSorteos::TABLE_NAME.
+        $query=$connection->prepare("Insert into ". \ConstantesDB\ConsSorteos::TABLE_NAME.
             " (".\ConstantesDB\ConsSorteos::id_sorteo.
             "," . \ConstantesDB\ConsSorteos::fecha.
             ",".\ConstantesDB\ConsSorteos::num1.
@@ -125,24 +132,71 @@ class ManejadoraSorteoModel
             ",".\ConstantesDB\ConsSorteos::num6.
             ",".\ConstantesDB\ConsSorteos::complementario.
             ",".\ConstantesDB\ConsSorteos::reintegro.
-            ") Values (".$sorteo->getIdSorteo().
-            ",'".$sorteo->getFechaSorteo().
-            "',".$sorteo->getNum1().
-            ",".$sorteo->getNum2().
-            ",".$sorteo->getNum3().
-            ",".$sorteo->getNum4().
-            ",".$sorteo->getNum5().
-            ",".$sorteo->getNum6().
-            ",".$sorteo->getComp().
-            ",".$sorteo->getRein().");";
+            ") Values (?,?,?,?,?,?,?,?,?,?);");
 
 
+        $query->bind_param("isiiiiiiii",$sorteo->getIdSorteo(),$sorteo->getFechaSorteo(),$sorteo->getNum1(),
+            $sorteo->getNum2(),$sorteo->getNum3(),$sorteo->getNum4(),$sorteo->getNum5(),$sorteo->getNum6(),
+            $sorteo->getComp(),$sorteo->getRein());
 
-        $prep_query = $connection->prepare($query);
-        $resultado=$prep_query->execute();
+        $resultado=$query->execute();
 
         $db->closeConnection();
         return $resultado;
 
     }
+
+    /**
+     * @param $sorteo: será una instacia de sorteomodel, el controller
+     * se encargará de la validación
+     */
+    public static function putSorteo(SorteoModel $sorteo){
+        $db=DatabaseModel::getInstance();
+        $connection=$db->getConnection();
+
+
+
+        $query=$connection->prepare("Update ". \ConstantesDB\ConsSorteos::TABLE_NAME.
+            " set ". \ConstantesDB\ConsSorteos::fecha.
+            "= ? ,".\ConstantesDB\ConsSorteos::num1.
+            "= ? ,".\ConstantesDB\ConsSorteos::num2.
+            "= ? ,".\ConstantesDB\ConsSorteos::num3.
+            "= ? ,".\ConstantesDB\ConsSorteos::num4.
+            "= ? ,".\ConstantesDB\ConsSorteos::num5.
+            "= ? ,".\ConstantesDB\ConsSorteos::num6.
+            "= ? ,".\ConstantesDB\ConsSorteos::complementario.
+            "= ? ,".\ConstantesDB\ConsSorteos::reintegro.
+            "= ? where " .\ConstantesDB\ConsSorteos::id_sorteo.
+            "= ?");
+
+
+
+        $query->bind_param("siiiiiiiii",$sorteo->getFechaSorteo(),$sorteo->getNum1(),
+            $sorteo->getNum2(),$sorteo->getNum3(),$sorteo->getNum4(),$sorteo->getNum5(),$sorteo->getNum6(),
+            $sorteo->getComp(),$sorteo->getRein(),$sorteo->getIdSorteo());
+        $resultado=$query->execute();
+
+        $db->closeConnection();
+        return $resultado;
+
+    }
+
+    public static function deleteSorteo($id){
+        $db=DatabaseModel::getInstance();
+        $connection=$db->getConnection();
+
+        $query="Delete From ". \ConstantesDB\ConsSorteos::TABLE_NAME;
+        if(isset($id)){
+            $query=$query. " where " .\ConstantesDB\ConsSorteos::id_sorteo. "= ?";
+        }
+        $prep_query=$connection->prepare($query);
+        if(isset($id)){
+            $prep_query->bind_param("i",$id);
+        }
+        $resultado=$prep_query->execute();
+
+        $db->closeConnection();
+        return $resultado;
+    }
+
 }

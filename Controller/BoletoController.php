@@ -4,6 +4,10 @@ require_once "Controller.php";
 
 class BoletoController extends Controller
 {
+    //ToDo
+    /*
+     * Hcer como con sorteo, si pides uno que te devuelva un objeto y no un array
+     */
     public function manageGetVerb(Request $request)
     {
 
@@ -44,6 +48,7 @@ class BoletoController extends Controller
     //Todo
     /*
      * Cambiar para insertar con prep_query para evitar sql injection
+     * Cambiar también que si no inserta, devuelva mensaje de error
      */
     /**
      * Método que
