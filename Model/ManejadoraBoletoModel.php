@@ -50,10 +50,11 @@ class ManejadoraBoletoModel
 
             if ($id != null) {
                 $prep_query->bind_param('s', $id);
+            }else{
+                $listaBoleto = array();
             }
 
             $prep_query->execute();
-            $listaBoleto = array();
 
             //IMPORTANT: IN OUR SERVER, I COULD NOT USE EITHER GET_RESULT OR FETCH_OBJECT,
             // PHP VERSION WAS OK (5.4), AND MYSQLI INSTALLED.
@@ -63,7 +64,12 @@ class ManejadoraBoletoModel
             $prep_query->bind_result($idSorteo,$idBoleto,$reintegro,$tipoApuesta,$premio,$numeroAcertados);
             while ($prep_query->fetch()) {
                 $boleto = new BoletoModel($idSorteo,$idBoleto,$reintegro,$tipoApuesta,$premio,$numeroAcertados);
-                $listaBoleto[] = $boleto;
+                if($id==null)
+                {
+                    $listaBoleto[] = $boleto;
+                }else{
+                    $listaBoleto=$boleto;
+                }
             }
 
 //            $result = $prep_query->get_result();
