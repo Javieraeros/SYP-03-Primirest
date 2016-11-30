@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="24252ab4-9e93-4d0b-a238-221064992d40" name="Local" url="http://localhost">
+      <webServer id="24252ab4-9e93-4d0b-a238-221064992d40" name="Local-Casa" url="http://localhost">
         <fileTransfer port="0" mountedRoot="/var/www/html" accessType="MOUNT" />
       </webServer>
       <webServer id="84fc0b09-8773-4e01-bb55-57fabe925da3" name="xampp-primirest" url="http://localhost">

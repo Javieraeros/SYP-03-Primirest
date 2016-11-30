@@ -40,6 +40,11 @@ class BoletoController extends Controller
 
     }
 
+
+    //Todo
+    /*
+     * Cambiar para insertar con prep_query para evitar sql injection
+     */
     /**
      * Método que
      * @param Request $request

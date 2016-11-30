@@ -77,7 +77,10 @@ class ManejadoraBoletoModel
 
         return $listaBoleto;
     }
-
+    //Todo
+    /*
+     * Cambiar para que se puedan insertar varios boletos.
+     */
     public static function postBoleto(BoletoModel $boleto){
         $db=DatabaseModel::getInstance();
         $connection=$db->getConnection();

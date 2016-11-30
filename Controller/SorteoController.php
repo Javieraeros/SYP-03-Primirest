@@ -39,6 +39,11 @@ class SorteoController extends Controller
 
     }
 
+
+    //Todo
+    /*
+     * Cambiar para insertar con prep_query para evitar sql injection
+     */
     public function managePostVerb(Request $request)
     {
         $response=null;

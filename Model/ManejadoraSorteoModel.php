@@ -98,6 +98,12 @@ class ManejadoraSorteoModel
         return $res;
     }
 
+
+    //Todo
+    /*
+     * Cambiar para que se puedan insertar varios sorteos.
+     */
+
     /**
      * @param $sorteo: será una instacia de sorteomodel, el controller
      * se encargará de la validación

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PublishConfigData" showNewOnSourceInSync="false">
     <serverData>
-      <paths name="Local">
+      <paths name="Local-Casa">
         <serverdata>
           <mappings>
             <mapping deploy="/Primirest" local="$PROJECT_DIR$" web="/Primirest" />
